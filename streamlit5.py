@@ -14,10 +14,12 @@ if 'history' not in st.session_state:
     st.session_state['history'] = []
 
 if 'generated' not in st.session_state:
-    st.session_state['generated'] = ["Hello ! Ask me anything about anything 🤗"]
+    st.session_state['generated'] = []
 
 if 'past' not in st.session_state:
-    st.session_state['past'] = [""]
+    st.session_state['past'] = []
+
+message("Olá! Como posso te ajudar?") 
 
 #container for the chat history
 response_container = st.container()
@@ -40,5 +42,5 @@ if st.session_state['generated']:
     with response_container:
         for i in range(len(st.session_state['generated'])):
             message(st.session_state["past"][i], is_user=True, key=str(i) + '_user', avatar_style="big-smile")
-            message(st.session_state["generated"][i], key=str(i), avatar_style="thumbs")
+            message(st.session_state["generated"][i], key=str(i))
     
