@@ -77,10 +77,14 @@ with container:
 if st.session_state['generated']:
     with response_container:
         for i in range(len(st.session_state['generated'])):
-            message(st.session_state["past"][i], is_user=True, key=str(i) + '_user', avatar_style="big-smile")
-            message(st.session_state["generated"][i], key=str(i))
-            try:
-                st.image(st.session_state['Graph'][i], width = 800)
-            except Exception as e:
-                st.write(e)
-                st.write("A imagem não foi gerada")
+            message_user = st.chat_message(name="user")
+            message_user.write(st.session_state["past"][i])
+            message_output = st.chat_message(name="assistant")
+            message_output.write(st.session_state["generated"][i])        
+            #st.chat_message(st.session_state["generated"][i], name="ai")
+            #try:
+            #    st.image(st.session_state['Graph'][i], width = 800)
+            #    
+            #except Exception as e:
+            #    st.write(e)
+            #    st.write("A imagem não foi gerada")
